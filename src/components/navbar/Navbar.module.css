@@ -1,0 +1,20 @@
+.navbar {
+     background-color: #219C90;
+}
+
+.list {
+     color: #fff;
+     display: flex;
+     justify-content: space-between;
+     padding: 1em 3em;
+     list-style: none;
+}
+
+.list li {
+     text-decoration: none;
+     text-transform: uppercase;
+}
+
+.list li:hover {
+     color: #fb2
+}
