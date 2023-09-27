@@ -15,7 +15,7 @@ const schema =  yup.object().shape({
 
 export default function Cadastro() {
 
-     const { register, handleSubmit, formState: {errors} } = useForm({
+     const { register, handleSubmit } = useForm({
           mode: 'onSubmit',
           resolver: yupResolver(schema)
      });
@@ -23,7 +23,7 @@ export default function Cadastro() {
      const onSubmit = (data: object) => console.log(data);
 
      return(
-          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="50%" border="1px solid #ccc" borderRadius="1em" boxShadow="0 0 0 5px #ccc" >
+          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="50%" border="1px solid #cfcfcf" borderRadius="1em" >
                <form onSubmit={handleSubmit(onSubmit)} className={styles.formulario}>
                     <FormControl>
                          <FormLabel>Nome da empresa:</FormLabel>
