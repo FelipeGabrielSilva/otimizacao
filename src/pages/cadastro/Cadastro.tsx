@@ -25,7 +25,7 @@ export default function Cadastro() {
 
 
      return(
-          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="50%" border="1px solid #cfcfcf" borderRadius="1em" boxShadow="1px 2px 9px #F4AAB9">
+          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="45%" border="1px solid #cfcfcf" borderRadius="1em" boxShadow="1px 2px 9px #cfcfcf">
                <form onSubmit={handleSubmit(onSubmit)} className={styles.formulario} autoComplete="off">
                     <FormControl>
                          <FormLabel>Nome da empresa:</FormLabel>

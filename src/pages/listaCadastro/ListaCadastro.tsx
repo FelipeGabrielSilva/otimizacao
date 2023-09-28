@@ -16,7 +16,7 @@ import { empresas } from "./Empresas"
 export default function ListaCadastro() {
      return(
           <>
-          <TableContainer h="auto" borderWidth="1px" borderRadius="12px" p="1em" m="2em" boxShadow="1px 2px 9px #F4AAB9" boxSizing="border-box">
+          <TableContainer h="auto" borderWidth="1px" borderRadius="12px" p="1em" m="2em" boxShadow="1px 2px 9px #cfcfcf" boxSizing="border-box">
                <Table variant="simple" boxSizing="content-box" size="sm">
                     <TableCaption>Lista de empresas cadastradas</TableCaption>
                     <Thead justifyContent="center" alignContent="center">
