@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import {useForm} from "react-hook-form"
 import * as yup from "yup"
 import styles from "./Cadastro.module.css"
+import BotaoCadastro from "../../components/botaoCadastrar/BotaoCadastro";
 
 const schema =  yup.object().shape({
      nomeEmpresa: yup.string().required("Campo obrigatório"),
@@ -15,16 +16,17 @@ const schema =  yup.object().shape({
 
 export default function Cadastro() {
 
-     const { register, handleSubmit } = useForm({
+     const { register, handleSubmit, reset } = useForm({
           mode: 'onSubmit',
-          resolver: yupResolver(schema)
+          resolver: yupResolver(schema),
      });
 
-     const onSubmit = (data: object) => console.log(data);
+     const onSubmit = (data: object) => (console.log(data), reset());
+
 
      return(
-          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="50%" border="1px solid #cfcfcf" borderRadius="1em" >
-               <form onSubmit={handleSubmit(onSubmit)} className={styles.formulario}>
+          <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="50%" border="1px solid #cfcfcf" borderRadius="1em" boxShadow="1px 2px 9px #F4AAB9">
+               <form onSubmit={handleSubmit(onSubmit)} className={styles.formulario} autoComplete="off">
                     <FormControl>
                          <FormLabel>Nome da empresa:</FormLabel>
                          <Input type="text" placeholder="Digite o nome da empresa" defaultValue="" {...register("nomeEmpresa", {required:true})} />
@@ -56,7 +58,7 @@ export default function Cadastro() {
                          <Radio {...register("parceria", {required:true})} value="false" >Não</Radio>
                     </RadioGroup>
 
-                    <Button display="flex" m="auto" justifyContent="center" type="submit" w="20%">Enviar</Button>
+                    <BotaoCadastro/>
                </form>
           </Flex>
      )
