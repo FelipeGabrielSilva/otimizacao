@@ -6,14 +6,19 @@ import {
      Th,
      Td,
      TableContainer,
+     Flex,
+     TableCaption,
 } from "@chakra-ui/react"
 import BotaoEditar from "../../components/botaoEditar/BotaoEditar"
 import BotaoDeletar from "../../components/botaoDeletar/BotaoDeletar"
+import { empresas } from "./Empresas"
 
 export default function ListaCadastro() {
      return(
-          <TableContainer h="85vh" borderWidth="1px" borderRadius="12px" p="1em" m="2em" boxShadow="1px 2px 9px #F4AAB9">
-               <Table variant="simple" >
+          <>
+          <TableContainer h="auto" borderWidth="1px" borderRadius="12px" p="1em" m="2em" boxShadow="1px 2px 9px #F4AAB9" boxSizing="border-box">
+               <Table variant="simple" boxSizing="content-box" size="sm">
+                    <TableCaption>Lista de empresas cadastradas</TableCaption>
                     <Thead justifyContent="center" alignContent="center">
                          <Tr>
                               <Th >ID</Th>
@@ -27,21 +32,26 @@ export default function ListaCadastro() {
                          </Tr>
                     </Thead>
                     <Tbody>
-                         <Tr>
-                              <Td>1</Td>
-                              <Td>Fomenta Vale</Td>
-                              <Td>4785-9856-5213</Td>
-                              <Td>contato@fomentavale.com.br</Td>
-                              <Td>Tecnologia</Td>
-                              <Td>Avenida Nove de Julho - nº106</Td>
-                              <Td>Sim</Td>
-                              <Td display="flex" gap="8px">
-                                   <BotaoEditar/>
-                                   <BotaoDeletar/>
-                              </Td>
-                         </Tr>
+                         {empresas.map((item) => (
+                              <Tr key={item.id}>
+                                   <Td>{item.id}</Td>
+                                   <Td>{item.nome}</Td>
+                                   <Td>{item.cnpj}</Td>
+                                   <Td>{item.email}</Td>
+                                   <Td>{item.endereco}</Td>
+                                   <Td>{item.descricao}</Td>
+                                   <Td>{item.parceira}</Td>
+                                   <Td>
+                                        <Flex gap="8px">
+                                             <BotaoEditar/>
+                                             <BotaoDeletar/>
+                                        </Flex>
+                                   </Td>
+                              </Tr>
+                         ))}
                     </Tbody>
                </Table>
           </TableContainer>
+          </>
      )
 }
