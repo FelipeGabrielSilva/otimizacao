@@ -4,7 +4,7 @@ export default function Home() {
      return(
           <>
           <Flex h="85vh" w="100%" justifyContent="center" p="3em">
-               <Grid display="flex" flexDir="column" width="60%" fontSize="1.5em">
+               <Grid display="flex" flexDir="column" width="60%" fontSize="1em">
                     <GridItem justifyContent="center" display="flex">
                          <h1>Bem-vindo ao crud de cadastro de empresa</h1>
                     </GridItem>
