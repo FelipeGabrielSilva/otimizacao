@@ -14,11 +14,13 @@ function App() {
     <>
     <BrowserRouter>
     <NavBar/>
+
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/Cadastro" element={<Cadastro/>} />
       <Route path="/ListaCadastro" element={<ListaCadastro/>} />
     </Routes>
+    
     <Footer/>
     </BrowserRouter>
     </>
