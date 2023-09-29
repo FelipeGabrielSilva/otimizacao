@@ -1,4 +1,11 @@
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, useDisclosure } from "@chakra-ui/react";
+import { AlertDialog, 
+     AlertDialogBody, 
+     AlertDialogContent, 
+     AlertDialogFooter, 
+     AlertDialogHeader, 
+     AlertDialogOverlay, 
+     Button, 
+     useDisclosure } from "@chakra-ui/react";
 import { FaTrashAlt } from "react-icons/fa"
 import React from "react"
 

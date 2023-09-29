@@ -5,7 +5,7 @@ export default function Home() {
           <>
           <Flex h="85vh" w="100%" justifyContent="center" p="3em">
                <Grid display="flex" flexDir="column" width="60%" fontSize="1em">
-                    <GridItem justifyContent="center" display="flex">
+                    <GridItem justifyContent="center" display="flex" fontWeight="bold" fontSize="1.5rem">
                          <h1>Bem-vindo ao crud de cadastro de empresa</h1>
                     </GridItem>
                     <GridItem textAlign="justify" display="flex" flexDir="column" gap="1em" p="2em 0 0 0">
