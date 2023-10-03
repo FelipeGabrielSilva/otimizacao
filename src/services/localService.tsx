@@ -1,5 +1,5 @@
 import {api} from "./apiService";
-import Cadastro from "../pages/cadastro/Cadastro";
+import { Cadastro } from "../interfaces/cadastro";
 
 export const createCadastro = async (cadastro: Cadastro) => {
      const response = await api.post("/Cadastro", cadastro);
