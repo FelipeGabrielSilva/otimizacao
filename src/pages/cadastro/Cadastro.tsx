@@ -6,12 +6,12 @@ import styles from "./Cadastro.module.css"
 import BotaoCadastro from "../../components/botaoCadastrar/BotaoCadastro";
 
 const schema =  yup.object().shape({
-     nomeEmpresa: yup.string().required("Campo obrigatório"),
-     cnpj: yup.string().required("Campo obrigatório"),
-     email: yup.string().email().required("Campo obrigatório"),
-     descricao: yup.string().required("Campo obrigatório"),
-     endereco: yup.string().required("Campo obrigatório"),
-     parceria: yup.boolean().required("Campo obrigatório"),
+     nomeEmpresa: yup.string().required(),
+     cnpj: yup.string().required(),
+     email: yup.string().email().required(),
+     descricao: yup.string().required(),
+     endereco: yup.string().required(),
+     parceria: yup.boolean().required(),
 });
 
 export default function Cadastro() {
@@ -23,33 +23,33 @@ export default function Cadastro() {
 
      const onSubmit = (data: object) => (console.log(data), reset());
 
-
+     
      return(
           <Flex margin="2em auto" display="flex" flexDir="column" p="1.5em"  w="45%" border="1px solid #cfcfcf" borderRadius="1em" boxShadow="1px 2px 9px #cfcfcf">
                <form onSubmit={handleSubmit(onSubmit)} className={styles.formulario} autoComplete="off">
                     <FormControl>
                          <FormLabel>Nome da empresa:</FormLabel>
-                         <Input type="text" placeholder="Digite o nome da empresa" defaultValue="" {...register("nomeEmpresa", {required:true})} />
+                         <Input id="nomeEmpresa" type="text" placeholder="Digite o nome da empresa" {...register("nomeEmpresa", {required:true})} />
                     </FormControl>
                     
                     <FormControl>
                          <FormLabel>CNPJ da empresa:</FormLabel>
-                         <Input type="text" placeholder="Digite o cnpj da empresa" defaultValue="" {...register("cnpj", {required:true})} />
+                         <Input id="cnpj" type="text" placeholder="Digite o cnpj da empresa" {...register("cnpj", {required:true})} />
                     </FormControl>
                     
                     <FormControl>
                          <FormLabel>E-mail da empresa:</FormLabel>
-                         <Input type="email" placeholder="Digite o e-mail da empresa" defaultValue="" {...register("email", {required:true})} />
+                         <Input id="email" type="email" placeholder="Digite o e-mail da empresa" {...register("email", {required:true})} />
                     </FormControl>
                     
                     <FormControl>
                          <FormLabel>Descrição:</FormLabel>
-                         <Input type="text" placeholder="Categoria"  defaultValue="" {...register("descricao", {required:true})} />
+                         <Input id="descricao" type="text" placeholder="Categoria"  {...register("descricao", {required:true})} />
                     </FormControl>
 
                     <FormControl>
                          <FormLabel>Endereço:</FormLabel>
-                         <Input type="text" placeholder="Informe o endereço da empresa" defaultValue=""  {...register("endereco", {required:true})} />
+                         <Input id="endereco" type="text" placeholder="Informe o endereço da empresa"  {...register("endereco", {required:true})} />
                     </FormControl>
 
                     <RadioGroup display="flex" gap="1em">
