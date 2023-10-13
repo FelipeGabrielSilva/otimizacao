@@ -45,7 +45,7 @@ export default function ListaCadastro() {
         boxShadow="1px 2px 9px #cfcfcf"
         boxSizing="border-box"
       >
-        <Table h="92%" variant="simple" boxSizing="content-box" size="sm">
+        <Table variant="simple" boxSizing="content-box" size="sm">
           <TableCaption>Lista de empresas cadastradas</TableCaption>
           <Thead justifyContent="center" alignContent="center">
             <Tr>
@@ -53,8 +53,8 @@ export default function ListaCadastro() {
               <Th>NOME</Th>
               <Th>CNPJ</Th>
               <Th>E-MAIL</Th>
-              <Th>DESCRIÇÃO</Th>
               <Th>ENDEREÇO</Th>
+              <Th>DESCRIÇÃO</Th>
               <Th>PARCEIRO</Th>
               <Th>AÇÕES</Th>
             </Tr>

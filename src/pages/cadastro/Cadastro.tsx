@@ -117,21 +117,6 @@ export default function Cadastro() {
           />
         </FormControl>
 
-        <FormControl>
-          <FormLabel>Descrição:</FormLabel>
-          <Input
-            id="descricao"
-            type="text"
-            placeholder="Categoria"
-            {...register("descricaoEmpresa", { required: true })}
-            onChange={(event) => {
-               setNovoEmpresa({
-                    ...novoEmpresa,
-                    descricaoEmpresa: event.target.value,
-               })
-            }}
-          />
-        </FormControl>
 
         <FormControl>
           <FormLabel>Endereço:</FormLabel>
@@ -142,16 +127,32 @@ export default function Cadastro() {
             {...register("endereco", { required: true })}
             onChange={(event) => {
                setNovoEmpresa({
-                    ...novoEmpresa,
-                    endereco: event.target.value,
-               })
+                 ...novoEmpresa,
+                 endereco: event.target.value,
+                })
             }}
           />
         </FormControl>
+        
+          <FormControl>
+            <FormLabel>Descrição:</FormLabel>
+            <Input
+              id="descricao"
+              type="text"
+              placeholder="Categoria"
+              {...register("descricaoEmpresa", { required: true })}
+              onChange={(event) => {
+                 setNovoEmpresa({
+                      ...novoEmpresa,
+                      descricaoEmpresa: event.target.value,
+                 })
+              }}
+            />
+          </FormControl>
 
         <RadioGroup display="flex" gap="1em" onChange={(event) => {
           setNovoEmpresa({
-               ...novoEmpresa,
+            ...novoEmpresa,
                parceiro: Boolean(event=='true'),
           })
         }}>
