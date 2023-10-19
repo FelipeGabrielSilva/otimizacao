@@ -12,30 +12,21 @@ import {
   RadioGroup,
   Radio,
   FormLabel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import { Empresa } from "../../interfaces/empresa";
 import React, { useEffect, useState } from "react";
 import { updateEmpresa } from "../../services/empresaService";
 
-interface atualizar {
+interface atualizarProps {
+  empresa: Empresa;
   onUpdate: (empresaAtualizada: Empresa) => void;
 }
 
-interface atualizarProps {
-  isOpen: boolean;
-  onClose: () => void;
-  empresa: Empresa;
-  onUpdate: (empresaAtualizada: EmpresaData) => void;
-}
-
-export default function BotaoEditar({
-  empresa,
-  isOpen,
-  onClose,
-  onUpdate,
-}: atualizarProps) {
+export default function BotaoEditar({ empresa, onUpdate }: atualizarProps) {
   const initialRef = React.useRef<HTMLInputElement>(null);
+  const { onOpen, isOpen, onClose } = useDisclosure();
 
   const [updateEmpresaData, setUpdateEmpresaData] = useState<Empresa>({
     nomeEmpresa: empresa ? empresa.nomeEmpresa : "",
@@ -50,14 +41,18 @@ export default function BotaoEditar({
     if (empresa) setUpdateEmpresaData(empresa);
   }, [empresa]);
 
-  const atualizarEmpresa = async () => {
+  const atualizar = async () => {
     try {
-      const nomeEmpresa = empresa.idEmpresa!.toString();
-      const { empresa, ...empresa } = updateEmpresaData;
+      const { nomeEmpresa, ...empresa} = updateEmpresaData;
       console.log(empresa);
+
+      await updateEmpresa(nomeEmpresa, updateEmpresa);
+
+      onUpdate(updateEmpresaData);
+      onClose();
     } catch (error) {
       console.error(
-        "Erro ao atualizar os dados da empresa ",
+        "Erro ao atualizar os dados da empresa",
         empresa?.idEmpresa,
         error
       );
@@ -67,7 +62,7 @@ export default function BotaoEditar({
   return (
     <>
       <Button size="sm" bg="#219C90" color="#fff">
-        <FaEdit size={18} />
+        <FaEdit size={18} onClick={onOpen} />
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} size="sm">
@@ -76,79 +71,81 @@ export default function BotaoEditar({
           <ModalHeader>EDITAR</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <form autoComplete="off">
-              <Flex display="flex" flexDir="column" gap="8px">
-                <FormLabel>Nome da empresa:</FormLabel>
-                <Input
-                  type="text"
-                  ref={initialRef}
-                  defaultValue={empresa.nomeEmpresa}
-                  onChange={(event) => {
-                    setUpdateEmpresaData({
-                      ...updateEmpresaData,
-                      nomeEmpresa: event.target.value,
-                    });
-                  }}
-                />
+            {empresa && (
+              <form autoComplete="off">
+                <Flex display="flex" flexDir="column" gap="8px">
+                  <FormLabel>Nome da empresa:</FormLabel>
+                  <Input
+                    type="text"
+                    ref={initialRef}
+                    defaultValue={empresa.nomeEmpresa}
+                    onChange={(event) => {
+                      setUpdateEmpresaData({
+                        ...updateEmpresaData,
+                        nomeEmpresa: event.target.value,
+                      });
+                    }}
+                  />
 
-                <FormLabel>CNPJ da empresa:</FormLabel>
-                <Input
-                  type="text"
-                  defaultValue={empresa.cnpj}
-                  onChange={(event) => {
-                    setUpdateEmpresaData({
-                      ...updateEmpresaData,
-                      cnpj: event.target.value,
-                    });
-                  }}
-                />
+                  <FormLabel>CNPJ da empresa:</FormLabel>
+                  <Input
+                    type="text"
+                    defaultValue={empresa.cnpj}
+                    onChange={(event) => {
+                      setUpdateEmpresaData({
+                        ...updateEmpresaData,
+                        cnpj: event.target.value,
+                      });
+                    }}
+                  />
 
-                <FormLabel>E-mail:</FormLabel>
-                <Input
-                  type="email"
-                  defaultValue={empresa.email}
-                  onChange={(event) => {
-                    setUpdateEmpresaData({
-                      ...updateEmpresaData,
-                      email: event.target.value,
-                    });
-                  }}
-                />
+                  <FormLabel>E-mail:</FormLabel>
+                  <Input
+                    type="email"
+                    defaultValue={empresa.email}
+                    onChange={(event) => {
+                      setUpdateEmpresaData({
+                        ...updateEmpresaData,
+                        email: event.target.value,
+                      });
+                    }}
+                  />
 
-                <FormLabel>Endereço:</FormLabel>
-                <Input
-                  type="text"
-                  defaultValue={empresa.endereco}
-                  onChange={(event) => {
-                    setUpdateEmpresaData({
-                      ...updateEmpresaData,
-                      endereco: event.target.value,
-                    });
-                  }}
-                />
+                  <FormLabel>Endereço:</FormLabel>
+                  <Input
+                    type="text"
+                    defaultValue={empresa.endereco}
+                    onChange={(event) => {
+                      setUpdateEmpresaData({
+                        ...updateEmpresaData,
+                        endereco: event.target.value,
+                      });
+                    }}
+                  />
 
-                <FormLabel>Descrição</FormLabel>
-                <Input
-                  type="text"
-                  defaultValue={empresa.descricaoEmpresa}
-                  onChange={(event) => {
-                    setUpdateEmpresaData({
-                      ...updateEmpresaData,
-                      descricaoEmpresa: event.target.value,
-                    });
-                  }}
-                />
+                  <FormLabel>Descrição</FormLabel>
+                  <Input
+                    type="text"
+                    defaultValue={empresa.descricaoEmpresa}
+                    onChange={(event) => {
+                      setUpdateEmpresaData({
+                        ...updateEmpresaData,
+                        descricaoEmpresa: event.target.value,
+                      });
+                    }}
+                  />
 
-                <RadioGroup display="flex" gap="1em">
-                  <FormLabel>Parceira:</FormLabel>
-                  <Radio value="true">Sim</Radio>
-                  <Radio value="false">Não</Radio>
-                </RadioGroup>
-              </Flex>
-            </form>
+                  <RadioGroup display="flex" gap="1em">
+                    <FormLabel>Parceira:</FormLabel>
+                    <Radio value="true">Sim</Radio>
+                    <Radio value="false">Não</Radio>
+                  </RadioGroup>
+                </Flex>
+              </form>
+            )}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={atualizarEmpresa}>Salvar</Button>
+            <Button onClick={atualizar}>Salvar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -11,12 +11,21 @@ import {
 } from "@chakra-ui/react";
 import BotaoEditar from "../../components/botaoEditar/BotaoEditar";
 import BotaoDeletar from "../../components/botaoDeletar/BotaoDeletar";
-import { deleteEmpresa, getAllEmpresa } from "../../services/empresaService";
+import { deleteEmpresa, getAllEmpresa, updateEmpresa } from "../../services/empresaService";
 import { Empresa } from "../../interfaces/empresa";
 import { useState, useEffect } from "react";
 
 export default function ListaCadastro() {
-  const [empresa, setEmpresa] = useState<Empresa[]>([]);
+  const [empresa, setEmpresa] = useState<Empresa[]>([
+    {
+      nomeEmpresa: "",
+      cnpj: "",
+      descricaoEmpresa: "",
+      endereco: "",
+      email: "",
+      parceiro: false,
+    },
+  ]);
   useEffect(() => {
     async function buscarEmpresas() {
       try {
@@ -34,10 +43,15 @@ export default function ListaCadastro() {
     window.location.reload();
   };
 
+  const atualizarEmpresa = async (idEmpresa: string) => {
+    await updateEmpresa(idEmpresa, empresa);
+    window.location.reload();
+  };
+
   return (
     <>
       <TableContainer
-        h="85vh"
+        h="auto"
         borderWidth="1px"
         borderRadius="12px"
         p="1em"
@@ -62,7 +76,7 @@ export default function ListaCadastro() {
           <Tbody>
             {empresa.map((item, index) => (
               <Tr key={index}>
-                <Td>{index + 1}</Td>
+                <Td>{item.idEmpresa}</Td>
                 <Td>{item.nomeEmpresa}</Td>
                 <Td>{item.cnpj}</Td>
                 <Td>{item.email}</Td>
@@ -71,7 +85,10 @@ export default function ListaCadastro() {
                 <Td>{item.parceiro ? "Sim" : "Não"}</Td>
                 <Td>
                   <Flex gap="8px">
-                    <BotaoEditar />
+                    <BotaoEditar
+                      empresa={item}
+                      onUpdate={() => atualizarEmpresa(item.idEmpresa!)}
+                    />
                     <BotaoDeletar
                       aoClicar={() => deletarEmpresa(item.idEmpresa!)}
                     />

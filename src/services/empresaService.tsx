@@ -16,6 +16,7 @@ export const getEmpresa = async (empresaId: string) => {
   return response.data;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const updateEmpresa = async (empresaId: string, updatedData: any) => {
   const response = await api.patch(`/empresa/${empresaId}`, updatedData);
   return response.data;
