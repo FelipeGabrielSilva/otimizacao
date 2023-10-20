@@ -19,46 +19,49 @@ import { Empresa } from "../../interfaces/empresa";
 import React, { useEffect, useState } from "react";
 import { updateEmpresa } from "../../services/empresaService";
 
-interface atualizarProps {
+interface ConsultaProps {
   empresa: Empresa;
-  onUpdate: (empresaAtualizada: Empresa) => void;
+  onUpdate: (atualizadaEmpresa: Empresa) => void;
 }
 
-export default function BotaoEditar({ empresa, onUpdate }: atualizarProps) {
-  const initialRef = React.useRef<HTMLInputElement>(null);
-  const { onOpen, isOpen, onClose } = useDisclosure();
+export default function BotaoEditar({
+  empresa,
+  onUpdate,
+}: ConsultaProps) {
 
-  const [updateEmpresaData, setUpdateEmpresaData] = useState<Empresa>({
+  const {onOpen, isOpen, onClose} = useDisclosure();
+  const initialRef = React.useRef<HTMLInputElement>(null);
+
+  const [updateEmpresaData, setUpdateEmpresaData] =
+  useState<Empresa>({
     nomeEmpresa: empresa ? empresa.nomeEmpresa : "",
     cnpj: empresa ? empresa.cnpj : "",
-    email: empresa ? empresa.email : "",
     descricaoEmpresa: empresa ? empresa.descricaoEmpresa : "",
     endereco: empresa ? empresa.endereco : "",
+    email: empresa ? empresa.email : "",
     parceiro: empresa ? empresa.parceiro : false,
   });
 
   useEffect(() => {
     if (empresa) setUpdateEmpresaData(empresa);
-  }, [empresa]);
+  }, [empresa]
+  );
 
   const atualizar = async () => {
     try {
-      const { nomeEmpresa, ...empresa} = updateEmpresaData;
-      console.log(empresa);
+      if (empresa) {
+        const {nomeEmpresa, ...empresa} = updateEmpresaData;
+        console.log(setUpdateEmpresaData);
 
-      await updateEmpresa(nomeEmpresa, updateEmpresa);
+        await updateEmpresa(nomeEmpresa, empresa);
 
-      onUpdate(updateEmpresaData);
-      onClose();
+        onUpdate(updateEmpresaData);
+        onClose();
+      }
     } catch (error) {
-      console.error(
-        "Erro ao atualizar os dados da empresa",
-        empresa?.idEmpresa,
-        error
-      );
+      console.error("Erro ao atualizar os dados da empresa", empresa?.idEmpresa)
     }
-  };
-
+  }
   return (
     <>
       <Button size="sm" bg="#219C90" color="#fff">
@@ -145,7 +148,7 @@ export default function BotaoEditar({ empresa, onUpdate }: atualizarProps) {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={atualizar}>Salvar</Button>
+            <Button onClick={() => atualizar()}>Salvar</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
