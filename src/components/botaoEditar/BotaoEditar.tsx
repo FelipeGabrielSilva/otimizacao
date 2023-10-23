@@ -50,18 +50,18 @@ export default function BotaoEditar({
   const atualizar = async () => {
     try {
       if (empresa) {
-        const {nomeEmpresa, ...empresa} = updateEmpresaData;
-        console.log(setUpdateEmpresaData);
+        const {idEmpresa, ...empresa} = updateEmpresaData;
 
-        await updateEmpresa(nomeEmpresa, empresa);
+        await updateEmpresa(idEmpresa, empresa);
 
         onUpdate(updateEmpresaData);
         onClose();
       }
     } catch (error) {
-      console.error("Erro ao atualizar os dados da empresa", empresa?.idEmpresa)
+      console.error("Erro ao atualizar os dados da empresa", empresa?.idEmpresa, error)
     }
-  }
+  };
+
   return (
     <>
       <Button size="sm" bg="#219C90" color="#fff">
@@ -127,7 +127,7 @@ export default function BotaoEditar({
                   />
 
                   <FormLabel>Descrição</FormLabel>
-                  <Input
+                  <Input  
                     type="text"
                     defaultValue={empresa.descricaoEmpresa}
                     onChange={(event) => {
@@ -138,7 +138,7 @@ export default function BotaoEditar({
                     }}
                   />
 
-                  <RadioGroup display="flex" gap="1em">
+                  <RadioGroup display="flex" gap="1em" >
                     <FormLabel>Parceira:</FormLabel>
                     <Radio value="true">Sim</Radio>
                     <Radio value="false">Não</Radio>
