@@ -15,6 +15,9 @@ export default function NavBar() {
           <li>
             <Link href="/ListaCadastro">Lista de cadastro</Link>
           </li>
+          <li>
+            <Link href="/AdmCadastro">ADM CADASTRO</Link>
+          </li>
         </ul>
       </nav>
     </>

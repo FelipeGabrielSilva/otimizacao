@@ -7,6 +7,7 @@ import Cadastro from './pages/cadastro/Cadastro'
 import ListaCadastro from './pages/listaCadastro/ListaCadastro'
 import Home from './pages/home/Home'
 import Footer from './components/footer/Footer'
+import AdmCadastro from './pages/admCadastro/admCadastro'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/Cadastro" element={<Cadastro/>} />
       <Route path="/ListaCadastro" element={<ListaCadastro/>} />
+      <Route path="/AdmCadastro" element={<AdmCadastro/>} />
     </Routes>
     
     <Footer/>
