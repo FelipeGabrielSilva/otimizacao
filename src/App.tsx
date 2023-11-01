@@ -7,7 +7,7 @@ import Cadastro from './pages/cadastro/Cadastro'
 import ListaCadastro from './pages/listaCadastro/ListaCadastro'
 import Home from './pages/home/Home'
 import Footer from './components/footer/Footer'
-import AdmCadastro from './pages/admCadastro/admCadastro'
+import AdmCadastro from './pages/admCadastro/AdmCadastro'
 
 function App() {
 
